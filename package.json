@@ -10,7 +10,7 @@
 	},
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/TeamNewGuys/tachi-import-scripts.git"
+		"url": "git+https://github.com/tng-dev/tachi-import-scripts.git"
 	},
 	"keywords": [
 		"kamaitachi",
@@ -23,9 +23,9 @@
 	"author": "zkldi",
 	"license": "MIT",
 	"bugs": {
-		"url": "https://github.com/TeamNewGuys/tachi-import-scripts/issues"
+		"url": "https://github.com/tng-dev/tachi-import-scripts/issues"
 	},
-	"homepage": "https://github.com/TeamNewGuys/tachi-import-scripts#readme",
+	"homepage": "https://github.com/tng-dev/tachi-import-scripts#readme",
 	"dependencies": {
 		"@rollup/plugin-commonjs": "^21.0.0",
 		"@rollup/plugin-json": "^4.1.0",
