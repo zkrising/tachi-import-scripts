@@ -134,6 +134,7 @@ app.on("ready", () => {
 				headers: {
 					Authorization: `Bearer ${TIS_CONFIG.authToken}`,
 					"Content-Type": "application/json",
+					"X-User-Intent": "true",
 				},
 				method: "POST",
 				body: JSON.stringify(batchManual),
