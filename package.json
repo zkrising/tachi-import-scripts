@@ -39,6 +39,7 @@
 		"better-sqlite3": "^7.4.3",
 		"bson": "^4.5.2",
 		"deepmerge": "^4.2.2",
+		"electron-builder": "^22.13.1",
 		"electron-rebuild": "^3.2.3",
 		"mei-logger": "^1.0.1",
 		"node-fetch": "2",
