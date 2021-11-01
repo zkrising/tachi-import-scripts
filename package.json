@@ -80,6 +80,5 @@
 		"linux": {
 			"category": "Utility"
 		}
-	},
-	"packageManager": "yarn@3.1.0"
+	}
 }
