@@ -13,3 +13,5 @@ logs
 
 tis-config.json
 batch-manual/
+
+out/
