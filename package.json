@@ -35,11 +35,11 @@
 		"@rollup/plugin-node-resolve": "^13.0.5",
 		"@rollup/plugin-typescript": "^8.2.5",
 		"@tsconfig/svelte": "^2.0.1",
-		"@types/better-sqlite3": "^7.4.0",
+		"@types/better-sqlite3": "7.4.0",
 		"@types/express-serve-static-core": "^4.17.24",
 		"@types/node-fetch": "2",
 		"@types/react": "^17.0.27",
-		"better-sqlite3": "^7.4.3",
+		"better-sqlite3": "latest",
 		"bson": "^4.5.2",
 		"deepmerge": "^4.2.2",
 		"mei-logger": "^1.0.1",
@@ -58,7 +58,7 @@
 	"devDependencies": {
 		"@typescript-eslint/eslint-plugin": "^4.32.0",
 		"@typescript-eslint/parser": "^4.32.0",
-		"electron": "^15.1.1",
+		"electron": "15",
 		"electron-builder": "^22.13.1",
 		"electron-rebuild": "^3.2.3",
 		"eslint": "^7.32.0",
@@ -80,5 +80,6 @@
 		"linux": {
 			"category": "Utility"
 		}
-	}
+	},
+	"packageManager": "yarn@3.1.0"
 }

@@ -15,3 +15,5 @@ tis-config.json
 batch-manual/
 
 out/
+
+.yarn/
