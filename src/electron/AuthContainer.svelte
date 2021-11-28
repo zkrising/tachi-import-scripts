@@ -25,7 +25,7 @@
 		<div class="col-2">
 			<a
 				class="btn btn-info"
-				href={TachiConfig.clientUrl + "/oauth/manual-apikey/" + TachiConfig.clientID}
+				href={TachiConfig.clientUrl + "/client-file-flow/" + TachiConfig.clientID}
 				target="_blank">Get Auth Token</a
 			>
 		</div>

@@ -32,7 +32,7 @@ interface Content {
 		scorePath: string;
 		chartPath: string;
 	};
-	USC_CONVERT: string;
+	USC_CONVERT: { dbPath: string; playtype: "Controller" | "Keyboard" };
 	CONFIG: null;
 	IMPORT: BatchManual;
 	LOG: {

@@ -9,6 +9,7 @@ export interface TISConfig {
 	};
 	uscDB?: {
 		dbPath?: string;
+		playtype?: "Controller" | "Keyboard";
 	};
 	authToken: string | null;
 	warning: string;

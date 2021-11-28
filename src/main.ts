@@ -34,7 +34,9 @@ app.on("ready", () => {
 	SetBrowserWin(win);
 
 	win.webContents.setWindowOpenHandler(({ url }) => {
-		logger.info(`Navigating to ${url}.`);
+		logger.info(
+			`Navigating to ${url}. If this doesn't work, copy the link and go to it yourself. This is an open issue with electron.`
+		);
 		shell.openExternal(url);
 
 		return { action: "deny" };
@@ -79,14 +81,15 @@ app.on("ready", () => {
 		e.reply("$$BEATORAJA_CONVERT", res);
 	});
 
-	ipcMain.on("@@USC_CONVERT", (e, dbPath) => {
-		const res = ConvertUSCDB(dbPath);
+	ipcMain.on("@@USC_CONVERT", (e, { dbPath, playtype }) => {
+		const res = ConvertUSCDB(dbPath, playtype);
 
 		logger.info(`Conversion Complete.`);
 
 		UpdateConfig({
 			uscDB: {
 				dbPath,
+				playtype,
 			},
 		});
 

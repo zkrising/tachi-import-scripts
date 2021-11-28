@@ -92,7 +92,7 @@ function GetNoteMod(dbScore: ScoreRow): "NORMAL" | "MIRROR" | "RANDOM" | "MIR-RA
 	return "NORMAL";
 }
 
-function GetLamp(dbScore: ScoreRow): Lamps["usc:Single"] {
+function GetLamp(dbScore: ScoreRow): Lamps["usc:Controller" | "usc:Keyboard"] {
 	if (dbScore.score === 10_000_000) {
 		return "PERFECT ULTIMATE CHAIN";
 	} else if (dbScore.miss === 0) {
@@ -193,7 +193,10 @@ function ValidateHitWindows(dbScore: ScoreRow) {
 	return false;
 }
 
-export default function ConvertUSCDB(filepath: string): BatchManual<"usc:Single"> {
+export default function ConvertUSCDB(
+	filepath: string,
+	playtype: "Controller" | "Keyboard"
+): BatchManual<"usc:Controller" | "usc:Keyboard"> {
 	const db = ConnectSQLite3(filepath);
 
 	const version: number = db.prepare(/* sql */ `SELECT version FROM Database`).get().version;
@@ -226,7 +229,7 @@ export default function ConvertUSCDB(filepath: string): BatchManual<"usc:Single"
 
 	logger.info(`Found ${dbScores.length} scores.`);
 
-	const scores: BatchManual<"usc:Single">["scores"] = [];
+	const scores: BatchManual<"usc:Controller" | "usc:Keyboard">["scores"] = [];
 
 	for (const dbScore of dbScores) {
 		if (!ValidateHitWindows(dbScore)) {
@@ -265,7 +268,7 @@ export default function ConvertUSCDB(filepath: string): BatchManual<"usc:Single"
 	return {
 		meta: {
 			game: "usc",
-			playtype: "Single",
+			playtype,
 			service: SERVICE,
 		},
 		scores,

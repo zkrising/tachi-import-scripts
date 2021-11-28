@@ -24,21 +24,30 @@ function GetConfig() {
 		const data = fs.readFileSync("tis-config.json", "utf-8");
 		const json = JSON.parse(data);
 
-		const err = p(json, {
-			lr2DB: p.optional({
-				scoreDB: "*string",
-				chartPath: "*string",
-			}),
-			beatorajaDB: p.optional({
-				scoreDB: "*string",
-				chartPath: "*string",
-			}),
-			uscDB: p.optional({
-				dbPath: "*string",
-			}),
-			authToken: "?string",
-			warning: p.any,
-		});
+		const err = p(
+			json,
+			{
+				lr2DB: p.optional({
+					scoreDB: "*string",
+					chartPath: "*string",
+				}),
+				beatorajaDB: p.optional({
+					scoreDB: "*string",
+					chartPath: "*string",
+				}),
+				uscDB: p.optional({
+					dbPath: "*string",
+					playtype: p.optional(p.isIn("Controller", "Keyboard")),
+				}),
+				authToken: "?string",
+				warning: p.any,
+			},
+			{
+				uscDB: {
+					playtype: "Expected Controller, Keyboard, or no property.",
+				},
+			}
+		);
 
 		if (err) {
 			logger.error(`Error in tis-config.json. ${FormatPrError(err)}.`, { json });
