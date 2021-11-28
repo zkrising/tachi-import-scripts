@@ -20,6 +20,22 @@ import ConvertBeatorajaDB from "./node/converters/beatoraja-db";
 
 export let win: BrowserWindow;
 
+type ImportPollStatus =
+	| {
+			importStatus: "completed";
+			import: ImportDocument;
+	  }
+	| {
+			importStatus: "ongoing";
+			progress: {
+				description: string;
+			};
+	  };
+
+function Sleep(ms: number) {
+	return new Promise<void>((resolve) => setTimeout(() => resolve(), ms));
+}
+
 app.on("ready", () => {
 	win = new BrowserWindow({
 		title: "Tachi Import Scripts",
@@ -147,45 +163,54 @@ app.on("ready", () => {
 				return e.reply("$$IMPORT", null);
 			}
 
-			const rj = (await res.json()) as
-				| SuccessfulAPIResponse<ImportDocument>
+			const initRes = (await res.json()) as
+				| SuccessfulAPIResponse<{ url: string }>
 				| UnsuccessfulAPIResponse;
 
-			if (rj.success) {
-				logger.info(
-					`Successfully imported scores for ${FormatGame(
-						batchManual.meta.game,
-						batchManual.meta.playtype
-					)}.`
-				);
-
-				logger.info(
-					`New Scores: ${rj.body.scoreIDs.length} | Failed: ${rj.body.errors.length}.`
-				);
-
-				return e.reply("$$IMPORT", rj);
-			} else if (res.status >= 500) {
-				logger.error(
-					`Server error in importing scores: ${rj.description} (${res.status} ${res.statusText}).`
-				);
-			} else {
-				logger.error(
-					`Error in importing scores: ${rj.description} (${res.status} ${res.statusText})`
-				);
+			if (!initRes.success) {
+				logger.error(`Failed to submit scores. ${initRes.description}.`);
+				return e.reply("$$IMPORT", null);
 			}
 
-			const filename = `${Date.now()}-${batchManual.meta.game}-${batchManual.meta.playtype}`;
-			logger.info(`Saving this import document to batch-manual/${filename} for debugging.`);
+			let isImportFinished = false;
+			let importDoc: ImportDocument | null = null;
+			let lastDesc = "";
 
-			// mkdir -p batch-manual
-			fs.mkdirSync("batch-manual", { recursive: true });
-			fs.writeFileSync(
-				`batch-manual/${filename}`,
-				JSON.stringify(batchManual, null, "\t"),
-				{}
+			while (!isImportFinished) {
+				const pollRes = (await fetch(initRes.body.url).then((r) =>
+					r.json()
+				)) as SuccessfulAPIResponse<ImportPollStatus>;
+
+				if (pollRes.success) {
+					if (pollRes.body.importStatus === "completed") {
+						isImportFinished = true;
+						importDoc = pollRes.body.import;
+					} else {
+						if (pollRes.body.progress.description !== lastDesc) {
+							lastDesc = pollRes.body.progress.description;
+							logger.info(pollRes.body.progress.description);
+						}
+
+						await Sleep(1000);
+					}
+				} else {
+					logger.error(`Failed to process import. ${pollRes.description}.`);
+					return e.reply("$$IMPORT", null);
+				}
+			}
+
+			logger.info(
+				`Successfully imported scores for ${FormatGame(
+					batchManual.meta.game,
+					batchManual.meta.playtype
+				)}.`
 			);
 
-			return e.reply("$$IMPORT", null);
+			logger.info(
+				`New Scores: ${importDoc!.scoreIDs.length} | Failed: ${importDoc!.errors.length}.`
+			);
+
+			return e.reply("$$IMPORT", initRes);
 		} catch (err) {
 			logger.error(`Request to ${TachiConfig.baseUrl} failed. ${(err as Error).message}`);
 			return e.reply("$$IMPORT", null);
