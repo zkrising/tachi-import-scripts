@@ -1,3 +1,5 @@
+# Stolen from the internet -- thanks samueleuli
+
 name: Build/Deploy Electron App
 
 on: push
