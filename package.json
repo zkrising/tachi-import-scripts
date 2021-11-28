@@ -73,12 +73,14 @@
 		"appId": "xyz.zkldi.tis",
 		"files": [
 			"dist/**/*",
+			"pages/**/*",
 			"package.json"
 		],
 		"directories": {
 			"output": "out"
 		},
 		"linux": {
+			"target": "AppImage",
 			"category": "Utility"
 		}
 	}
