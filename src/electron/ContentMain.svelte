@@ -3,7 +3,9 @@
 
 	import { TISConfig } from "../common/types";
 
-	import TachiConfig from "../node/util/tachi-info";
+	import { GetTachiConfig } from "../node/util/tachi-info";
+	const TachiConfig = GetTachiConfig();
+
 	import AuthContainer from "./AuthContainer.svelte";
 	import ConvertSelect from "./ConvertSelect.svelte";
 	import Divider from "./Divider.svelte";

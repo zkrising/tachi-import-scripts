@@ -1,5 +1,6 @@
 <script lang="ts">
-	import TachiConfig from "../node/util/tachi-info";
+	import { GetTachiConfig } from "../node/util/tachi-info";
+	const TachiConfig = GetTachiConfig();
 
 	export let value: string | null;
 	export let CheckAuthAgain: () => unknown;

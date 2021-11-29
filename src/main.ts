@@ -5,7 +5,8 @@ import ConvertLR2DB from "./node/converters/lr2-db";
 import { SetBrowserWin } from "./node/util/browser-win";
 import { TIS_CONFIG, UpdateConfig } from "./node/util/config";
 import logger from "./node/util/logger";
-import TachiConfig from "./node/util/tachi-info";
+import { GetTachiConfig } from "./node/util/tachi-info";
+const TachiConfig = GetTachiConfig();
 import fetch from "node-fetch";
 import {
 	BatchManual,

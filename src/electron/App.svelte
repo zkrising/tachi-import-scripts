@@ -1,6 +1,8 @@
 <script lang="ts">
 	import { Body } from "node-fetch";
-	import TachiConfig from "../node/util/tachi-info";
+	import { GetTachiConfig } from "../node/util/tachi-info";
+	const TachiConfig = GetTachiConfig();
+
 	import Console from "./Console.svelte";
 	import ContentMain from "./ContentMain.svelte";
 	import ConvertSelect from "./ConvertSelect.svelte";
