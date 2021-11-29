@@ -41,6 +41,7 @@ function GetConfig() {
 				}),
 				authToken: "?string",
 				warning: p.any,
+				staging: "*boolean",
 			},
 			{
 				uscDB: {
