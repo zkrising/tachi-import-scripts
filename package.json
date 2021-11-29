@@ -43,7 +43,7 @@
 		"better-sqlite3": "^7.4.4",
 		"bson": "^4.5.2",
 		"deepmerge": "^4.2.2",
-		"mei-logger": "^1.0.1",
+		"mei-logger": "1.0.1",
 		"node-fetch": "2",
 		"prudence": "^0.9.6",
 		"rollup": "^2.58.0",
