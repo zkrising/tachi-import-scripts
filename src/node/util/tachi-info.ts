@@ -1,5 +1,3 @@
-import { TIS_CONFIG } from "./config";
-
 export const BokutachiConfig = {
 	name: "Bokutachi",
 	baseUrl: "https://bokutachi.xyz",
@@ -15,7 +13,7 @@ export const BokutachiStagingConfig = {
 };
 
 export function GetTachiConfig() {
-	const TachiConfig = TIS_CONFIG.staging ? BokutachiStagingConfig : BokutachiConfig;
+	const TachiConfig = process.env.STAGING ? BokutachiStagingConfig : BokutachiConfig;
 
 	return TachiConfig;
 }
