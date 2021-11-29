@@ -13,5 +13,4 @@ export interface TISConfig {
 	};
 	authToken: string | null;
 	warning: string;
-	staging?: boolean;
 }
