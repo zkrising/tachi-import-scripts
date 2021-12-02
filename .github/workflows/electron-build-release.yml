@@ -40,3 +40,4 @@ jobs:
                   # release the app after building
                   # temporarily just always build and release.
                   release: always # ${{ startsWith(github.ref, 'refs/tags/v') }}
+                  publish: always
