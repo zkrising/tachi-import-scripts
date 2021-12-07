@@ -149,6 +149,13 @@ app.on("ready", () => {
 			)}.`
 		);
 
+		fs.mkdirSync("batch-manual", { recursive: true });
+		fs.writeFileSync(
+			`batch-manual/${Date.now()}-${batchManual.meta.game}-${batchManual.meta.playtype}.json`,
+			JSON.stringify(batchManual, null, "\t"),
+			{}
+		);
+
 		try {
 			const res = await fetch(`${TachiConfig.baseUrl}/ir/direct-manual/import`, {
 				headers: {
