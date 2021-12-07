@@ -162,6 +162,7 @@ app.on("ready", () => {
 					Authorization: `Bearer ${TIS_CONFIG.authToken}`,
 					"Content-Type": "application/json",
 					"X-User-Intent": "true",
+					"User-Agent": "TIS/1.0.5",
 				},
 				method: "POST",
 				body: JSON.stringify(batchManual),
