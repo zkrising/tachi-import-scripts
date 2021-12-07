@@ -142,13 +142,21 @@ export default function ConvertBeatorajaDB(
 			}
 		}
 
+		let bp: number | null = dbScore.minbp;
+
+		if (bp === 2 ** 31 - 1) {
+			bp = null;
+		} else if (bp === -1) {
+			bp = null;
+		}
+
 		const score: BatchManualScore<"bms:7K" | "bms:14K"> = {
 			identifier: dbScore.sha256,
 			matchType: "bmsChartHash",
 			score: (dbScore.lpg + dbScore.epg) * 2 + dbScore.egr + dbScore.lgr,
 			hitMeta: {
 				// beatoraja uses 2 ** 31 - 1 instead of null.
-				bp: dbScore.minbp === 2 ** 31 - 1 ? null : dbScore.minbp,
+				bp,
 				fast: dbScore.egr + dbScore.egd,
 				slow: dbScore.lgr + dbScore.lgd,
 				maxCombo: dbScore.combo,
