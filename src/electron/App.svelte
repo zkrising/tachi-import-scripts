@@ -13,7 +13,7 @@
 <div class="container mt-4">
 	<div class="row">
 		<div class="col-12">
-			<h1>{TachiConfig.name} Import Scripts (v1.0.5)</h1>
+			<h1>{TachiConfig.name} Import Scripts (v1.0.6)</h1>
 		</div>
 		<div class="col-12">
 			<h4>
