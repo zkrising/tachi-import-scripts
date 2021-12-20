@@ -1,4 +1,4 @@
-import { BatchManual, Lamps } from "tachi-common";
+import { BatchManual, integer, Lamps } from "tachi-common";
 import logger from "../util/logger";
 import SERVICE from "../util/service";
 import { ConnectSQLite3 } from "../util/sqlite3";
@@ -73,6 +73,13 @@ interface ScoreRow {
 	 * Whether random is being used or not.
 	 */
 	random: 0 | 1;
+
+	/**
+	 * Early, Late and maxCombo info
+	 */
+	early: integer | null;
+	late: integer | null;
+	combo: integer | null;
 
 	/**
 	 * We attach these two properties on for logging.
@@ -211,13 +218,13 @@ export default function ConvertUSCDB(
 		);
 	}
 
-	if (version > 19) {
+	if (version > 20) {
 		logger.error(
-			`The version of your maps.db is ${version}, which is a version after what this tool supports (19). It might not be safe to convert this. Report this, and I'll update the tool to work for the later version!`
+			`The version of your maps.db is ${version}, which is a version after what this tool supports (20). It might not be safe to convert this. Report this, and I'll update the tool to work for the later version!`
 		);
 
 		throw new Error(
-			`The version of your maps.db is ${version}, which is a version after what this tool supports (19). It might not be safe to convert this. Report this, and I'll update the tool to work for the later version!`
+			`The version of your maps.db is ${version}, which is a version after what this tool supports (20). It might not be safe to convert this. Report this, and I'll update the tool to work for the later version!`
 		);
 	}
 
@@ -246,6 +253,9 @@ export default function ConvertUSCDB(
 			matchType: "uscChartHash",
 			hitMeta: {
 				gauge: dbScore.gauge,
+				fast: dbScore.early,
+				slow: dbScore.late,
+				maxCombo: dbScore.combo,
 			},
 			timeAchieved: dbScore.timestamp * 1000,
 			judgements: {
