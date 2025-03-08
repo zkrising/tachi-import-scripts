@@ -1,6 +1,6 @@
 {
 	"name": "tachi-import-scripts",
-	"version": "1.0.6",
+	"version": "1.1.0",
 	"description": "Scripts for importing local files to Tachi.",
 	"main": "dist/main.js",
 	"scripts": {
