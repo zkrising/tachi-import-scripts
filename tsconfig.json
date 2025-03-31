@@ -1,32 +1,11 @@
 {
-	"compilerOptions": {
-		"target": "ES2020",
-		"module": "ESNext",
-		"lib": [
-			"ES2019",
-			"DOM"
-		],
-		"declaration": true,
-		"strict": true,
-		"allowJs": false,
-		"esModuleInterop": true,
-		"sourceMap": true,
-		"outDir": "./dist",
-		// "baseUrl": "src", too difficult to set up.
-		"typeRoots": [
-			"@types",
-			"node_modules/@types"
-		],
-		"importsNotUsedAsValues": "remove"
-	},
-	"extends": "@tsconfig/svelte/tsconfig.json",
-	"include": [
-		"src/**/*.ts",
-		"src/preload.js"
-	],
-	"exclude": [
-		"node_modules",
-		// "src/test-utils",
-		// "src/**/*.test.ts"
+	"files": [],
+	"references": [
+		{
+			"path": "./tsconfig.app.json"
+		},
+		{
+			"path": "./tsconfig.node.json"
+		}
 	]
 }

@@ -1,0 +1,5 @@
+[workspace]
+resolver = "2"
+package.edition = "2024"
+
+members = ["src-tauri"]
