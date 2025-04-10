@@ -156,7 +156,7 @@ async fn import(state: tauri::State<'_, State>, bm: serde_json::Value) -> Result
 		.header("Authorization", format!("Bearer {auth}"))
 		.header("Content-Type", "application/json")
 		.header("X-User-Intent", "true")
-		.header("User-Agent", "TIS/2.1.0")
+		.header("User-Agent", "TIS/2.1.1")
 		.body(serde_json::to_string(&bm).expect("must ser"))
 		.send()
 		.await;
