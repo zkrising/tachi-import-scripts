@@ -197,7 +197,7 @@ pub fn convert_beatoraja_db(
 					continue;
 				}
 			},
-			time_achieved: Some((score.date * 1000) as i64),
+			time_achieved: Some(score.date as i64 * 1000),
 			optional: Some(BMSOptionalMetrics {
 				bp,
 				fast: Some(score.egr + score.egd),

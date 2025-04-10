@@ -218,7 +218,7 @@ pub fn convert_usc_db(
 			identifier: score.chart_hash.clone(),
 			match_type: "bmsChartHash".into(),
 			score: score.score as u64,
-			time_achieved: Some((score.timestamp * 1000) as i64),
+			time_achieved: Some(score.timestamp as i64 * 1000),
 			optional: Some(USCOptionalMetrics {
 				fast: score.early,
 				slow: score.late,
