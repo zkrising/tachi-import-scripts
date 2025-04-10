@@ -12,3 +12,5 @@ tis-config.json
 /target
 /logs
 batch-manual
+
+appimage-bundler
