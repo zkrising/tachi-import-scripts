@@ -216,7 +216,7 @@ pub fn convert_usc_db(
 			lamp: get_lamp(&score),
 			comment: None,
 			identifier: score.chart_hash.clone(),
-			match_type: "bmsChartHash".into(),
+			match_type: "uscChartHash".into(),
 			score: score.score as u64,
 			time_achieved: Some(score.timestamp as i64 * 1000),
 			optional: Some(USCOptionalMetrics {

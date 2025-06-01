@@ -135,6 +135,7 @@ pub struct BMSBatchManualScore {
 }
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(rename_all = "camelCase")]
 pub struct BMSJudgements {
 	pub pgreat: Option<i32>,
 	pub great: Option<i32>,
@@ -144,6 +145,7 @@ pub struct BMSJudgements {
 }
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(rename_all = "camelCase")]
 pub struct USCJudgements {
 	pub critical: Option<i32>,
 	pub near: Option<i32>,
@@ -203,6 +205,7 @@ pub struct USCOptionalMetrics {
 }
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(rename_all = "camelCase")]
 pub struct USCBatchManualScore {
 	pub identifier: String,
 	pub match_type: String,
