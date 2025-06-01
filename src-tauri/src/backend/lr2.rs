@@ -134,13 +134,10 @@ pub fn convert_lr2_db(
 			lamp: match score.clear {
 				0 => BMSLamp::NoPlay,
 				1 => BMSLamp::Failed,
-				2 => BMSLamp::AssistClear,
-				3 => BMSLamp::AssistClear,
-				4 => BMSLamp::EasyClear,
-				5 => BMSLamp::Clear,
-				6 => BMSLamp::HardClear,
-				7 => BMSLamp::ExHardClear,
-				8..=10 => BMSLamp::FullCombo,
+				2 => BMSLamp::EasyClear,
+				3 => BMSLamp::Clear,
+				4 => BMSLamp::HardClear,
+				5 => BMSLamp::FullCombo,
 				invalid => {
 					log::warn(format!(
 						"Invalid lamp on {name} -- got {invalid}; ignoring."
