@@ -118,4 +118,4 @@ impl TISConfig {
 	}
 }
 
-pub const SERVICE_NAME: &str = "TIS. v2.1.1";
+pub const SERVICE_NAME: &str = "TIS. v2.2.0";
